@@ -6,7 +6,8 @@ class IncoherentBrokerResponse(BaseException):
 
 
 class Oanda:
-    def set_endpoint(self, inst) -> str:
+    @staticmethod
+    def set_endpoint(inst) -> str:
         """
         Builds the endpoint to get the last candle in Oanda broker
         :param env: oanda environment url. can be testing or real FX
@@ -27,7 +28,8 @@ class Oanda:
             ]
         return ''.join(url)
 
-    def clean_response(self, response):
+    @staticmethod
+    def clean(response) -> str:
         if response['candles'][-1]['complete']:
             return response['candles'][-1]
         elif not response['candles'][-1]['complete']:
@@ -37,3 +39,16 @@ class Oanda:
                 '[ERROR] The broker Oanda is providing not coherent '
                 'response', response
             )
+
+
+# Add your additional broker here:
+class AdditionalBroker:  # update the broker class name with your broker
+    @staticmethod
+    def set_endpoint(inst) -> str:
+        # add here the code to build an endpoint
+        return ''  # update the return
+
+    @staticmethod
+    def clean(response):
+        # add here the code to post process the response from the broker
+        return '' # update the return
