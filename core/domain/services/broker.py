@@ -29,16 +29,15 @@ class Oanda:
         return ''.join(url)
 
     @staticmethod
-    def clean(response) -> str:
-        if response['candles'][-1]['complete']:
-            return response['candles'][-1]
-        elif not response['candles'][-1]['complete']:
-            return response['candles'][-2]
+    def clean(response) -> dict:
+        if 'candles' in response:
+            if response['candles'][-1]['complete']:
+                return response['candles'][-1]
+            elif not response['candles'][-1]['complete']:
+                return response['candles'][-2]
         else:
-            raise IncoherentBrokerResponse(
-                '[ERROR] The broker Oanda is providing not coherent '
-                'response', response
-            )
+            print('[ERROR] Incoherent broker response')
+            return {}
 
 
 # Add your additional broker here:
