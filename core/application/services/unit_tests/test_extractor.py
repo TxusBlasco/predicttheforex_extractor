@@ -1,7 +1,7 @@
 from core.application.services.extractor import ExtractorAppService
 from core.domain.services.broker import Oanda
 
-EAS = ExtractorAppService(broker='Oanda', insts=['EUR_USD'])
+EAS = ExtractorAppService(insts=['EUR_USD', 'EUR_JPY'])
 
 
 class TestExtractorAppService:
@@ -23,3 +23,6 @@ class TestExtractorAppService:
         assert last_candles['EUR_USD']['complete']
         assert 'time' in last_candles['EUR_USD']
         assert 'volume' in last_candles['EUR_USD']
+
+    def test_fetch_stream(self):
+        EAS.fetch_stream()

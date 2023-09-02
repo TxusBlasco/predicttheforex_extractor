@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-To use the extractor, ensurethat you machine have the following items 
+To use the extractor, ensure that your machine have the following items 
 installed: 
 - Java +8 https://www.java.com/en/
 - Kafka broker https://kafka.apache.org/
@@ -27,7 +27,6 @@ don't conatin any white space or dots. Example C:\kafka
 Check that both zookeeper server and kafka broker are up by creating a 
   topic like this:
 - Go to a different CMD prompt, go to kafka directory and type:
-- .\bin\windows\kafka-topics.bat --create --topic my-topic --bootstrap-server 
-  localhost:9092
+- .\bin\windows\kafka-topics.bat --create --topic my-topic --bootstrap-server localhost:9092
 - Check that the topic has been created, typing:
 - .\bin\windows\kafka-topics.bat --describe --topic my-topic --bootstrap-server localhost:9092
