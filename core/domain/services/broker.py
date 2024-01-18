@@ -30,6 +30,14 @@ class Oanda:
 
     @staticmethod
     def clean(response) -> dict:
+        """
+        Candles in Oanda can come in status 'incomplete', which means that the current candle has not yet finished to be
+        formed. This means that there is an 'open' price, but not yet a 'close' price.
+        :param response: the 'dirty' response coming from the Oanda API. It contains two candles. The last candle can be
+        incomplete, but the previous to last is always complete. This method takes the last if it is complete,
+        or the previous one if the last one is incomplete
+        :return:
+        """
         if 'candles' in response:
             if response['candles'][-1]['complete']:
                 return response['candles'][-1]
